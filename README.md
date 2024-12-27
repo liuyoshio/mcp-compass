@@ -48,7 +48,23 @@ code $env:AppData\Claude\claude_desktop_config.json
 1. **As an MCP Service**:
 
    Add to your AI assistant's MCP configuration to enable service discovery capabilities.
+   
 
+   ``` json
+   {
+   "mcpServers": {
+      "mcp-compass": {
+         "command": "npx",
+         "args": [
+            "-y",
+            "@liuyoshio/mcp-compass"
+         ]
+      }
+   }
+   }
+   ```
+
+   or
 
    ``` json
    {
