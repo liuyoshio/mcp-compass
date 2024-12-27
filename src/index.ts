@@ -1,78 +1,71 @@
 #!/usr/bin/env node
 
-import { Server } from "@modelcontextprotocol/sdk/server/index.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import {
-  CallToolRequestSchema,
-  ListToolsRequestSchema,
-} from "@modelcontextprotocol/sdk/types.js";
+import { FastMCP } from 'fastmcp';
 import { z } from "zod";
 
 const COMPASS_API_BASE = "https://registry.mcphub.io";
 const NAME = "mcp-compass";
 
-// Define Zod schemas for validation
-const GeneralArgumentsSchema = z.object({
-  query: z.string().min(1),
-});
-
-// Create server instance
-const server = new Server(
+const server = new FastMCP(
   {
     name: NAME,
     version: "1.0.0",
   },
-  {
-    capabilities: {
-      tools: {},
-    },
-  }
 );
 
-// List available tools
-server.setRequestHandler(ListToolsRequestSchema, async () => {
-  return {
-    tools: [
-      {
-        name: "recommend-mcp-servers",
-        description: `
-          Use this tool when there is a need to findn external MCP tools.
-          It explores and recommends existing MCP servers from the 
-          internet, based on the description of the MCP Server 
-          needed. It returns a list of MCP servers with their IDs, 
-          descriptions, GitHub URLs, and similarity scores.
-          `,
-        inputSchema: {
-          type: "object",
-          properties: {
-            query: {
-              type: "string",
-              description: `
-                Description for the MCP Server needed. 
-                It should be specific and actionable, e.g.:
-                GOOD:
-                - 'MCP Server for AWS Lambda Python3.9 deployment'
-                - 'MCP Server for United Airlines booking API'
-                - 'MCP Server for Stripe refund webhook handling'
+server.addTool({
+  name: "recommend-mcp-servers",
+  description: `
+    Use this tool when there is a need to findn external MCP tools.
+    It explores and recommends existing MCP servers from the 
+    internet, based on the description of the MCP Server 
+    needed. It returns a list of MCP servers with their IDs, 
+    descriptions, GitHub URLs, and similarity scores.
+    `,
+  parameters: z.object({
+    query: z.string().min(1).describe(`
+      Description for the MCP Server needed. 
+      It should be specific and actionable, e.g.:
+      GOOD:
+      - 'MCP Server for AWS Lambda Python3.9 deployment'
+      - 'MCP Server for United Airlines booking API'
+      - 'MCP Server for Stripe refund webhook handling'
 
-                BAD:
-                - 'MCP Server for cloud' (too vague)
-                - 'MCP Server for booking' (which booking system?)
-                - 'MCP Server for payment' (which payment provider?)
+      BAD:
+      - 'MCP Server for cloud' (too vague)
+      - 'MCP Server for booking' (which booking system?)
+      - 'MCP Server for payment' (which payment provider?)
 
-                Query should explicitly specify:
-                1. Target platform/vendor (e.g. AWS, Stripe, MongoDB)
-                2. Exact operation/service (e.g. Lambda deployment, webhook handling)
-                3. Additional context if applicable (e.g. Python, refund events)
-                `,
-            },
-          },
-          required: ["query"],
+      Query should explicitly specify:
+      1. Target platform/vendor (e.g. AWS, Stripe, MongoDB)
+      2. Exact operation/service (e.g. Lambda deployment, webhook handling)
+      3. Additional context if applicable (e.g. Python, refund events)
+      `),
+  }),
+  execute: async ({ query }) => {
+    const servers = await makeCOMPASSRequest(query);
+    
+    if (!servers || servers.length === 0) {
+      return {
+        content: [{
+          type: "text",
+          text: "No matching MCP servers found for your query. Try being more specific about the platform, operation, or service you need.",
+        }],
+      };
+    }
+    
+    const serversText = await toServersText(servers);
+    
+    return {
+      content: [
+        {
+          type: "text",
+          text: serversText,
         },
-      },
-    ],
-  };
-});
+      ],
+    };
+  },
+})
 
 interface MCPServerResponse {
   title: string;
@@ -115,51 +108,6 @@ const toServersText = async (servers: MCPServerResponse[]): Promise<string> => {
   }).join('\n');
 };
 
-// Handle tool execution
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
-  const { name, arguments: args } = request.params;
-
-  try {
-    if (name === "recommend-mcp-servers") {
-      const { query } = GeneralArgumentsSchema.parse(args);
-      const servers = await makeCOMPASSRequest(query);
-
-      if (!servers || servers.length === 0) {
-        return {
-          content: [{
-            type: "text",
-            text: "No matching MCP servers found for your query. Try being more specific about the platform, operation, or service you need.",
-          }],
-        };
-      }
-
-      const serversText = await toServersText(servers);
-      
-      return {
-        content: [
-          {
-            type: "text",
-            text: serversText,
-          },
-        ],
-      };
-    } else {
-      throw new Error(`Unknown tool: ${name}`);
-    }
-  } catch (error) {
-    console.error("Error handling request:", error);
-    throw error;
-  }
-});
-
-// Start the server
-async function main() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error("MCP Compass Server running on stdio");
-}
-
-main().catch((error) => {
-  console.error("Fatal error in main():", error);
-  process.exit(1);
-});
+server.start({
+  transportType: 'stdio'
+})
