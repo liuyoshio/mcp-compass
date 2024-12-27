@@ -156,7 +156,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("Ask Wave MCP Server running on stdio");
+  console.error("MCP Compass Server running on stdio");
 }
 
 main().catch((error) => {
