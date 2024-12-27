@@ -19,7 +19,7 @@
   "license": "MIT",
   "packageManager": "pnpm@9.15.0",
   "dependencies": {
-    "@liuyoshio/mcp-compass": "^1.0.4",
+    "@liuyoshio/mcp-compass": "^1.0.5",
     "@modelcontextprotocol/sdk": "^1.0.3",
     "zod": "^3.24.1"
   },
