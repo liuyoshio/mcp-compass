@@ -1,6 +1,6 @@
 # MCP Compass 🧭
 
-[![Model Context Protocol](https://img.shields.io/badge/Model%20Context%20Protocol-1.0.0-blue)](https://modelcontextprotocol.org)
+[![Model Context Protocol](https://img.shields.io/badge/Model%20Context%20Protocol-purple)](https://modelcontextprotocol.org)
 
 ## MCP Discovery & Recommendation
 
