@@ -1,11 +1,21 @@
 {
-  "name": "ask-wave",
+  "name": "@liuyoshio/mcp-compass",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "description": "MCP Discovery & Recommendation Service - Find the right MCP server for your needs",
+  "main": "build/index.js",
+  "type": "module",
+  "bin": {
+    "mcp-compass": "./build/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "discovery",
+    "recommendation"
+  ],
+  "author": "Yoshio Liu",
+  "license": "MIT",
   "packageManager": "pnpm@9.15.0",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.3",
@@ -15,14 +25,24 @@
     "@types/node": "^22.10.2",
     "typescript": "^5.7.2"
   },
-  "type": "module",
-  "bin": {
-    "weather": "./build/index.js"
-  },
   "scripts": {
-    "build": "tsc && node -e \"require('fs').chmodSync('build/index.js', '755')\""
+    "build": "tsc && chmod +x build/index.js",
+    "prepublishOnly": "pnpm run build"
   },
   "files": [
-    "build"
-  ]
+    "build",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liuyoshio/mcp-compass.git"
+  },
+  "bugs": {
+    "url": "https://github.com/liuyoshio/mcp-compass/issues"
+  },
+  "homepage": "https://github.com/liuyoshio/mcp-compass#readme"
 }
