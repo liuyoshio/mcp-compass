@@ -1,6 +1,6 @@
 {
   "name": "@liuyoshio/mcp-compass",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "MCP Discovery & Recommendation Service - Find the right MCP server for your needs",
   "main": "build/index.js",
   "type": "module",
@@ -19,7 +19,7 @@
   "license": "MIT",
   "packageManager": "pnpm@9.15.0",
   "dependencies": {
-    "@liuyoshio/mcp-compass": "^1.0.5",
+    "@liuyoshio/mcp-compass": "^1.0.6",
     "@modelcontextprotocol/sdk": "^1.0.3",
     "zod": "^3.24.1"
   },
