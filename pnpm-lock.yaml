@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@liuyoshio/mcp-compass':
-        specifier: ^1.0.4
-        version: 1.0.4
+        specifier: ^1.0.7
+        version: 1.0.7
       '@modelcontextprotocol/sdk':
         specifier: ^1.0.3
         version: 1.0.3
@@ -27,8 +27,8 @@ importers:
 
 packages:
 
-  '@liuyoshio/mcp-compass@1.0.4':
-    resolution: {integrity: sha512-fiUC/0SOm+0UZRYF7z1OOE9sbZuE2iau9zScHlnC9LZIwBIOqyMjNZruxPKzR09INewSy1r41BrHNpV5eY/ZEQ==}
+  '@liuyoshio/mcp-compass@1.0.7':
+    resolution: {integrity: sha512-688I8DPhHzzHu9kTnm3rFe8dbWIGZ8huFJlWiMZigLiBtxlfF9VIM/a5AF7A3E1R8bEy4+pHuj2Q786qoBUYCA==}
     hasBin: true
 
   '@modelcontextprotocol/sdk@1.0.3':
@@ -95,7 +95,7 @@ packages:
 
 snapshots:
 
-  '@liuyoshio/mcp-compass@1.0.4':
+  '@liuyoshio/mcp-compass@1.0.7':
     dependencies:
       '@modelcontextprotocol/sdk': 1.0.3
       zod: 3.24.1
