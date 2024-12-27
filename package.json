@@ -1,10 +1,12 @@
 {
   "name": "@liuyoshio/mcp-compass",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "MCP Discovery & Recommendation Service - Find the right MCP server for your needs",
   "main": "build/index.js",
   "type": "module",
-  "bin": "./build/index.js",
+  "bin": {
+    "@liuyoshio/mcp-compass": "./build/index.js"
+  },
   "keywords": [
     "mcp",
     "model-context-protocol",
