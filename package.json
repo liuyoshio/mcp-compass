@@ -20,7 +20,7 @@
   "packageManager": "pnpm@9.15.0",
   "dependencies": {
     "@liuyoshio/mcp-compass": "^1.0.7",
-    "@modelcontextprotocol/sdk": "^1.0.3",
+    "fastmcp": "^1.2.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {
