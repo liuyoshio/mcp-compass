@@ -1,6 +1,8 @@
 # MCP Compass 🧭
 
 [![Model Context Protocol](https://img.shields.io/badge/Model%20Context%20Protocol-purple)](https://modelcontextprotocol.org)
+[![smithery badge](https://smithery.ai/badge/@liuyoshio/mcp-compass)](https://smithery.ai/server/@liuyoshio/mcp-compass)
+
 
 <a href="https://glama.ai/mcp/servers/85uxmq6wx7"><img width="380" height="200" src="https://glama.ai/mcp/servers/85uxmq6wx7/badge" alt="Compass MCP server" /></a>
 
@@ -35,14 +37,22 @@ or
 
 ### Installation
 
-For Claude Desktop, edit your `claude_desktop_config.json` file:
+#### Installing via Smithery
 
-#### MacOS/Linux
+To install Compass for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@liuyoshio/mcp-compass):
+
+```bash
+npx -y @smithery/cli install @liuyoshio/mcp-compass --client claude
+```
+
+#### For Claude Desktop, edit your `claude_desktop_config.json` file:
+
+##### MacOS/Linux
 ``` bash
 code ~/Library/Application\ Support/Claude/claude_desktop_config.json
 ```
 
-#### Windows
+##### Windows
 ``` bash
 code $env:AppData\Claude\claude_desktop_config.json
 ```
