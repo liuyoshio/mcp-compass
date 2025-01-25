@@ -1,6 +1,7 @@
 # MCP Compass 🧭
 
 [![Model Context Protocol](https://img.shields.io/badge/Model%20Context%20Protocol-purple)](https://modelcontextprotocol.org)
+[![smithery badge](https://smithery.ai/badge/@liuyoshio/mcp-compass)](https://smithery.ai/server/@liuyoshio/mcp-compass)
 
 <a href="https://glama.ai/mcp/servers/85uxmq6wx7"><img width="380" height="200" src="https://glama.ai/mcp/servers/85uxmq6wx7/badge" alt="Compass MCP server" /></a>
 
@@ -101,4 +102,5 @@ MIT License - See [LICENSE](LICENSE) file for details.
 - 🐛 [Report issues](https://github.com/liuyoshio/mcp-compass/issues)
 - 💡 [Feature requests](https://github.com/liuyoshio/mcp-compass/issues)
 - 📖 [Documentation](https://github.com/liuyoshio/mcp-compass)
+
 
