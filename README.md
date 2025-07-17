@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/liuyoshio-mcp-compass-badge.png)](https://mseep.ai/app/liuyoshio-mcp-compass)
+
 # MCP Compass 🧭
 
 [![Model Context Protocol](https://img.shields.io/badge/Model%20Context%20Protocol-purple)](https://modelcontextprotocol.org)
